@@ -3,8 +3,8 @@ Org 0000h
 RS	Equ	P1.3
 E	Equ	P1.2
 
-; ---------------------------------- Principal -------------------------------------
-Principal:
+; ---------------------------------- Main -------------------------------------
+Main:
 		Clr RS		; RS=0 - Registro de instruções está selecionado.
 ;------------------------- Configuração dos Códigos de Instrução ------------------------------
 		Call ConfigFunc	; Configuração da função (modo de 4 bits)
@@ -49,7 +49,7 @@ Incorreto: Call PosicaoCursor  	; Coloca o cursor na próxima linha
 		SetB RS		; RS=1 - Registro de dados está selecionado.
 		Call Negado
 FimAqui: Jmp $
-;------------------------------ *Fim Do Principal* ---------------------------------
+;------------------------------ *Fim Do Main* ---------------------------------
 ;----------------- Nota: Use 7 para Frequência de Atualização em EdSim51 ----------------
 ;-------------------------------- Sub-rotinas ---------------------------------				
 ; ------------------------- Configuração de função --------------------------------------
