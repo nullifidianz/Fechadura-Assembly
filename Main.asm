@@ -50,7 +50,7 @@ Incorreto: Call PosicaoCursor  	; Coloca o cursor na próxima linha
 		Call Negado
 FimAqui: Jmp $
 ;------------------------------ *Fim Do Main* ---------------------------------
-;----------------- Nota: Use 7 para Frequência de Atualização em EdSim51 ----------------
+;----------------- Nota: Use 10 para Frequência de Atualização em EdSim51 ----------------
 ;-------------------------------- Sub-rotinas ---------------------------------				
 ; ------------------------- Configuração de função --------------------------------------
 ConfigFunc:	Clr  P1.7		; |
