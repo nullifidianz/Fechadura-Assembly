@@ -16,7 +16,7 @@ O objetivo principal deste projeto é criar um sistema de entrada de uma senha e
 - Exibição no Display LCD: As mensagens são exibidas em um display LCD de acordo com as interações do usuário. O armazenamento é realizado a partir de tabelas LUT (Lookup Tables) para facilitar a exibição de textos e afins.
 - Verificação da senha: O sistema verifica se a senha inserida pelo usuário está correta.
 - Feedback Visual: Fornece feedback visual ao usuário através do display LCD, indicando se o acesso foi concedido ou negado.
-- Botão para alterar a senha: Após inserir a senha corretamente, o usuário pode pressionar o botão P2.0 para alterar o PIN da fechadura.
+- Botão para alterar a senha: Após inserir a senha corretamente, o usuário pode pressionar o botão "#" para alterar o PIN da fechadura.
   
 # Componentes Utilizados
 - Microcontrolador 8051
@@ -35,7 +35,7 @@ O objetivo principal deste projeto é criar um sistema de entrada de uma senha e
 - O sistema verifica se o PIN inserido está correto.
 - Se o PIN estiver correto, exibe a mensagem "Acesso Concedido".
 - Caso contrário, exibe a mensagem "Acesso Negado".
-- A partir do "Acesso Concedido", o usuário pode alterar o PIN clicando no botão P2.0.
+- A partir do "Acesso Concedido", o usuário pode alterar o PIN clicando no botão "#".
 ## Documentação Utilizada
 
 [EdSim51's Users Guide](http://edsim51.com/simInstructions.html)
