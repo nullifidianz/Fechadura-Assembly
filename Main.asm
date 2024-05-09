@@ -3,11 +3,11 @@ Org 0000h
 RS	Equ	P1.3
 E	Equ	P1.2
 
-; ---------------------------------- Main -------------------------------------
-Main:
-		Clr RS		; RS=0 - Registro de instruÃ§Ãµes estÃ¡ selecionado.
 
-		Call ConfigFunc	; ConfiguraÃ§Ã£o da funÃ§Ã£o
+Main:
+		Clr RS		; RS=0 - Registro de instruções está selecionado.
+
+		Call ConfigFunc	; Configuração da função
 	
 		Call ExibeDisplay	; Liga o display e o cursor
 	
@@ -17,39 +17,39 @@ Main:
 		
 		Mov DPTR,#LUT1	; Tabela de consulta para a mensagem "Digite o PIN:"
 Novamente:	Clr A
-		Movc A,@A+DPTR	; ObtÃ©m o caractere
+		Movc A,@A+DPTR	; Obtém o caractere
 		Jz Proximo		; Sai quando A=0
 		Call EnviarCar	; Exibe o caractere
-		Inc DPTR		; Aponta para o prÃ³ximo caractere
+		Inc DPTR		; Aponta para o próximo caractere
 		Jmp Novamente
 	
-Proximo: Mov R4,#00h	; Contador para verificar o nÃºmero de atualizaÃ§Ãµes
-		Mov R5,#00h	; Contador para verificar o nÃºmero de entradas corretas
-		Mov DPTR,#LUT4	; Copia o inÃ­cio da tabela de consulta para o PIN
-;----------------------------------- Obter Entrada ----------------------------------		
+Proximo: Mov R4,#00h	; Contador para verificar o número de atualizações
+		Mov R5,#00h	; Contador para verificar o número de entradas corretas
+		Mov DPTR,#LUT4	; Copia o início da tabela de consulta para o PIN
+	
 Iterar: Call ScanTeclado	; valida a entrada do teclado
 		SetB RS		; RS=1 
 		Clr A
 		Mov A,#'*'
 		Call EnviarCar	; Exibe o asterisco para cada tecla pressionada
-;------------------- Verifica PINS corretos inseridos ---------------		
+		
 		Clr A
 		Movc A,@A+DPTR	; Tabela de consulta do PIN
-		Call VerificarEntrada	; Verifica o nÃºmero de entradas corretas
+		Call VerificarEntrada	; Verifica o número de entradas corretas
 		Inc DPTR
 		Inc R4
 		Cjne R4,#04h,Iterar
 		
-		Cjne R5,#04h,Incorreto	; Verifica o nÃºmero de entradas corretas
-Correto: Call PosicaoCursor  	; Coloca o cursor na prÃ³xima linha
-		SetB RS		; RS=1 - Registro de dados estÃ¡ selecionado.
+		Cjne R5,#04h,Incorreto	; Verifica o número de entradas corretas
+Correto: Call PosicaoCursor  	; Coloca o cursor na próxima linha
+		SetB RS		; RS=1 - Registro de dados está selecionado.
 		Call Concedido
-		; Ativa o motor no sentido anti-horÃ¡rio
+		; Ativa o motor no sentido anti-horário
 		SETB P3.0 ; Supondo que P3.0 seja o pino de controle para girar o motor
-		CLR P3.1 ; Se necessÃ¡rio, dependendo do seu circuito
+		CLR P3.1 ; Se necessário, dependendo do seu circuito
 
 		; Inicia temporizador para uma volta e meia
-		MOV R6, #0 ; Contador de temporizaÃ§Ã£o
+		MOV R6, #0 ; Contador de temporização
 		MOV R7, #150 ; Limite para uma volta e meia
 		
 Temporizar:	DJNZ R7, Temporizar ; Aguarda completar uma volta e meia
@@ -58,15 +58,15 @@ Temporizar:	DJNZ R7, Temporizar ; Aguarda completar uma volta e meia
 		CLR P3.0 ; Desliga o pino de controle do motor
 
 		Jmp FimAqui
-Incorreto: Call PosicaoCursor  	; Coloca o cursor na prÃ³xima linha
-		SetB RS		; RS=1 - Registro de dados estÃ¡ selecionado.
+Incorreto: Call PosicaoCursor  	; Coloca o cursor na próxima linha
+		SetB RS		; RS=1 - Registro de dados está selecionado.
 		Call Negado
 FimAqui: Jmp $
-;-------------------------------- Sub-rotinas ---------------------------------				
+				
 ConfigFunc:	Clr  P1.7		
 		Clr  P1.6		
 		SetB P1.5		
-		Clr  P1.4		; | (DB4)DL=0 - coloca o mÃ³dulo LCD em modo de 4 bits 
+		Clr  P1.4		; | (DB4)DL=0 - coloca o módulo LCD em modo de 4 bits 
 	
 		Call Pulso
 
@@ -83,9 +83,8 @@ ConfigFunc:	Clr  P1.7
 			
 		Call Delay
 		Ret
-;------------------------------------------------------------------------------
-;------------------------------- Controle de ExibiÃ§Ã£o -----------------------------------
-; O display Ã© ligado, o cursor Ã© ligado
+
+
 ExibeDisplay:	Clr P1.7		 
 		Clr P1.6		 
 		Clr P1.5		 
@@ -101,9 +100,7 @@ ExibeDisplay:	Clr P1.7
 
 		Call Delay			
 		Ret
-;--------------------------------------------------------------------------------
-;----------------------------- ConfiguraÃ§Ã£o do Modo de Entrada (modo de 4 bits) ----------------------
-;    Definido para incrementar o endereÃ§o em um e o cursor deslocado para a direita
+
 ModoEntrada:	Clr P1.7		; P1.7=0
 		Clr P1.6		; P1.6=0
 		Clr P1.5		; P1.5=0
@@ -121,12 +118,12 @@ ModoEntrada:	Clr P1.7		; P1.7=0
 		Call Delay		
 		Ret
 		
-;------------------------------------ Pulso --------------------------------------
-Pulso:		SetB E		; P1.2 estÃ¡ conectado ao pino 'E' do mÃ³dulo LCD
+
+Pulso:		SetB E		; P1.2 está conectado ao pino 'E' do módulo LCD
 		Clr  E		; borda negativa em E	
 		Ret
 
-;------------------------------------- EnviaChar----------------------------------			
+		
 EnviarCar:	Mov C, ACC.7		
 		Mov P1.7, C		
 		Mov C, ACC.6		
@@ -154,12 +151,12 @@ EnviarCar:	Mov C, ACC.7
 		Mov R1,#55h
 		Ret
 
-;------------------------------------- Delay ------------------------------------			
+			
 Delay:		Mov R0, #50
 		Djnz R0, $
 		Ret
 				
-;--------------------------- Scan do Teclado------------------------------
+
 
 ScanTeclado:	CLR P0.3			;Limpa Linha3
 			CALL IDCodigo0		;Chama sub-rotina de scan de coluna
@@ -189,22 +186,22 @@ ScanTeclado:	CLR P0.3			;Limpa Linha3
 Feito:		Clr F0		        ;Limpa F0 antes de sair
 			Ret
 		
-;---------------------------- Sub-rotina de Varredura de Coluna ----------------------------
+
 IDCodigo0:	JNB P0.4, Keycode03	;Se Col0 Linha3 estiver limpa - chave encontrada
 			JNB P0.5, Keycode13	;Se Col1 Linha3 estiver limpa - chave encontrada
 			JNB P0.6, Keycode23	;Se Col2 Linha3 estiver limpa - chave encontrada
 			RET					
 
 Keycode03:	SETB F0			;Chave encontrada - define F0
-			Mov R7,#'3'		;CÃ³digo para '3'
+			Mov R7,#'3'		;Código para '3'
 			RET				
 
 Keycode13:	SETB F0			;Chave encontrada - define F0
-			Mov R7,#'2'		;CÃ³digo para '2'
+			Mov R7,#'2'		;Código para '2'
 			RET				
 
 Keycode23:	SETB F0			;Chave encontrada - define F0
-			Mov R7,#'1'		;CÃ³digo para '1'
+			Mov R7,#'1'		;Código para '1'
 			RET				
 
 IDCodigo1:	JNB P0.4, Keycode02	;Se Col0 Linha2 estiver limpa - chave encontrada
@@ -213,17 +210,17 @@ IDCodigo1:	JNB P0.4, Keycode02	;Se Col0 Linha2 estiver limpa - chave encontrada
 			RET					
 
 Keycode02:	SETB F0			;Chave encontrada - define F0
-			Mov R7,#'6'		;CÃ³digo para '6'
+			Mov R7,#'6'		;Código para '6'
 
 			RET				
 
 Keycode12:	SETB F0			;Chave encontrada - define F0
-			Mov R7,#'5'		;CÃ³digo para '5'
+			Mov R7,#'5'		;Código para '5'
 			;Mov P1,R7		;Exibe tecla pressionada
 			RET				
 
 Keycode22:	SETB F0			;Chave encontrada - define F0
-			Mov R7,#'4'		;CÃ³digo para '4'
+			Mov R7,#'4'		;Código para '4'
 			RET				
 
 IDCodigo2:	JNB P0.4, Keycode01	
@@ -232,15 +229,15 @@ IDCodigo2:	JNB P0.4, Keycode01
 			RET					
 
 Keycode01:	SETB F0			;Chave encontrada - define F0
-			Mov R7,#'9'		;CÃ³digo para '9'
+			Mov R7,#'9'		;Código para '9'
 			RET				
 
 Keycode11:	SETB F0			;Chave encontrada - define F0
-			Mov R7,#'8'		;CÃ³digo para '8'
+			Mov R7,#'8'		;Código para '8'
 			RET				
 
 Keycode21:	SETB F0			;Chave encontrada - define F0
-			Mov R7,#'7'		;CÃ³digo para '7'
+			Mov R7,#'7'		;Código para '7'
 			RET				
 
 IDCodigo3:	JNB P0.4, Keycode00	; Se Col0 Linha0 estiver limpa - chave encontrada
@@ -249,25 +246,25 @@ IDCodigo3:	JNB P0.4, Keycode00	; Se Col0 Linha0 estiver limpa - chave encontrada
 			RET					
 
 Keycode00:	SETB F0			; Chave encontrada - define F0
-			Mov R7,#'#'		;CÃ³digo para '#' 
+			Mov R7,#'#'		;Código para '#' 
 			RET				
 
 Keycode10:	SETB F0			; Chave encontrada - define F0
-			Mov R7,#'0'		;CÃ³digo para '0'
+			Mov R7,#'0'		;Código para '0'
 			RET				
 
 Keycode20:	SETB F0			; Chave encontrada - define F0
-			Mov R7,#'*'	   	;CÃ³digo para '*' 
+			Mov R7,#'*'	   	;Código para '*' 
 			RET		
 
-;--------------------------------- Verificar Entrada -----------------------------------
+
 VerificarEntrada:	
 		Cjne A,07H,Saida	
 		Inc R5
 Saida:					
 		Ret
 
-;-----------------------------------PosicaoCursor------------------------------------------
+
 PosicaoCursor:	Clr RS
 		SetB P1.7		
 		SetB P1.6		
@@ -286,7 +283,7 @@ PosicaoCursor:	Clr RS
 		Call Delay			
 		Ret	
 
-;------------------------------ Aberto ---------------------------------------------
+
 Concedido:	Mov DPTR,#LUT2		;Tabela de consulta para "Acesso Concedido"
 Voltar:		Clr A
 		Movc A,@A+DPTR
@@ -296,7 +293,7 @@ Voltar:		Clr A
 		Jmp	Voltar		
 Casa:		Ret	
 
-;------------------------------ Negado --------------------------------------------
+
 Negado:		Mov DPTR,#LUT3		;Tabela de consulta para "Acesso Negado"
 MaisUm:		Clr A
 		Movc A,@A+DPTR
@@ -305,33 +302,16 @@ MaisUm:		Clr A
 		Inc DPTR	
 		Jmp MaisUm
 VoltarCasa:	Ret					
-;------------------------------ Tabela LUT -----------------------------
-;---------------------------------- Mensagens ------------------------------------
+
 		Org 0200h
 LUT1:       DB 'E', 'n', 't', 'r', 'a', 'r', 32, 'P', 'I', 'N',':',0
 LUT2:		DB 'A', 'c', 'e', 's', 's', 'o', 32, 'C', 'o', 'n', 'c', 'e', 'd','i','d','o', 0
 LUT3:		DB 'A', 'c', 'e', 's', 's', 'o', 32, 'N', 'e', 'g', 'a', 'd', 'o', 0
 
-;------------------------------------- PIN --------------------------------------
+
 		Org 0240h		
 LUT4:		DB '1', '3', '1', '2',0 ; mude de acordo com a necessidade
-;--------------------------------- Fim do Programa -------------------------------	
+	
 Parar:		Jmp $
 	
 		End
-
-org 001Bh
-int01:
-CPL P3.0 ; Inverte o estado do pino para girar no sentido anti-horÃ¡rio
-CPL P3.1
-RETI
-
-org 0030h
-MAIN:
-MOV TMOD, #01100000b
-SETB EA
-SETB ET1
-SETB TR1
-SETB P3.0
-CLR P3.1
-JMP $
