@@ -36,6 +36,17 @@ O objetivo principal deste projeto é criar um sistema de entrada de uma senha e
 - Se o PIN estiver correto, exibe a mensagem "Acesso Concedido".
 - Caso contrário, exibe a mensagem "Acesso Negado".
 - A partir do "Acesso Concedido", o usuário pode alterar o PIN clicando no botão "#".
+
+## Screenshots
+Acesso Condedido - 
+
+![Gif acesso_concedido](https://github.com/nullifidianz/Fechadura-Assembly/blob/main/img/acesso_concedido.gif)
+
+Acesso Negado - 
+
+![Gif acesso_negado](https://github.com/nullifidianz/Fechadura-Assembly/blob/main/img/acesso_negado.gif)
+
+
 ## Documentação Utilizada
 
 [EdSim51's Users Guide](http://edsim51.com/simInstructions.html)
