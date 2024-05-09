@@ -33,9 +33,9 @@ O objetivo principal deste projeto é criar um sistema de entrada de uma senha e
 - O sistema exibe a mensagem "Entrar PIN:" no display LCD.
 - O usuário insere o PIN usando o teclado matricial.
 - O sistema verifica se o PIN inserido está correto.
-- Se o PIN estiver correto, exibe a mensagem "Acesso Concedido".
+- Se o PIN estiver correto, exibe a mensagem "Acesso Concedido" e gira o motor.
 - Caso contrário, exibe a mensagem "Acesso Negado".
-- A partir do "Acesso Concedido", o usuário pode alterar o PIN clicando no botão "#".
+
 
 ## Screenshots
 Acesso Condedido - 
