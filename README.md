@@ -29,7 +29,7 @@ O objetivo principal deste projeto é criar um sistema de entrada de uma senha e
 # Funcionamento
 
 Fluxograma da lógica de Funcionamento:
-![Fluxograma](https://github.com/nullifidianz/Fechadura-Assembly/blob/main/img/fluxograma)
+![Fluxograma](https://github.com/nullifidianz/Fechadura-Assembly/blob/main/img/fluxograma.png)
 
 
 **A frenquência recomendada para testes é de 100hz para exibição inicial da mensagem e 10hz antes de fazer os inputs de teclado**
