@@ -27,6 +27,20 @@ O objetivo principal deste projeto é criar um sistema de entrada de uma senha e
 
 
 # Funcionamento
+
+Fluxograma da lógica de Funcionamento:
+
+graph TD;
+    Iniciar --> Pede_PIN;
+    Pede_PIN --> Receber_PIN;
+    Receber_PIN --> Verificar_PIN;
+    Verificar_PIN --> |PIN correto?| Acesso_Concedido;
+    Verificar_PIN --> |PIN incorreto?| Acesso_Negado;
+    Acesso_Concedido --> Motor_Gira;
+    Motor_Gira-->Reiniciar
+    Acesso_Negado --> Reiniciar;
+    Reiniciar --> Iniciar;
+
 **A frenquência recomendada para testes é de 100hz para exibição inicial da mensagem e 10hz antes de fazer os inputs de teclado**
 
 **Caso a frequência seja maior, ocorrerá erro de multiplas entradas no teclado matricial**
