@@ -29,17 +29,7 @@ O objetivo principal deste projeto é criar um sistema de entrada de uma senha e
 # Funcionamento
 
 Fluxograma da lógica de Funcionamento:
-
-graph TD;
-    Iniciar --> Pede_PIN;
-    Pede_PIN --> Receber_PIN;
-    Receber_PIN --> Verificar_PIN;
-    Verificar_PIN --> |PIN correto?| Acesso_Concedido;
-    Verificar_PIN --> |PIN incorreto?| Acesso_Negado;
-    Acesso_Concedido --> Motor_Gira;
-    Motor_Gira-->Reiniciar
-    Acesso_Negado --> Reiniciar;
-    Reiniciar --> Iniciar;
+[![](https://mermaid.ink/img/pako:eNp9ks9OwkAQxl-l2TOQLrRYamJiChgOGhONB9PL2A6w0e7UYUvk3wP5HL6Y61IKmOheuvP7vplpZmcjMspRxGLGUM69x-Flqj17Jlplirx2-8pLSE_VbFzprNaOwOmjD_WCQ7Uo32BVO06R89xSTiNtGHKoLSfEOe5oCQVqg7XexPseeqmAE-BDg0Ps1CdkNVUZ8HmL39h5Jwa5KbMPHN8ylmgUe2C-Pr3AW-IaF1s7h4yY0VCy_zTjOcf7Eg3deve0sJ0pqXhB_G9S8l_KGfvlt8-QYa5y-tt78kN3OIPG2qQ6242yQ7gl03Q9Aqc_YlESq3UztiNw-j0cJ-rujo5Vcf1eqZrX0UGxVLREgVyAyu32bX5cqTBzLDAVsb3mwK-pSPXO-qAy9LDSmYgNV9gSVZmDsfsFdmmLAyxBPxOdhiLeiA8R98J-5yIKBoH0ZdgPpWyJlYjbMpKdoN-PoiDodkPfv4h2LbF2FWRHRr2e74dBNxxEg6And98ZhgS6?type=png)](https://mermaid.live/edit#pako:eNp9ks9OwkAQxl-l2TOQLrRYamJiChgOGhONB9PL2A6w0e7UYUvk3wP5HL6Y61IKmOheuvP7vplpZmcjMspRxGLGUM69x-Flqj17Jlplirx2-8pLSE_VbFzprNaOwOmjD_WCQ7Uo32BVO06R89xSTiNtGHKoLSfEOe5oCQVqg7XexPseeqmAE-BDg0Ps1CdkNVUZ8HmL39h5Jwa5KbMPHN8ylmgUe2C-Pr3AW-IaF1s7h4yY0VCy_zTjOcf7Eg3deve0sJ0pqXhB_G9S8l_KGfvlt8-QYa5y-tt78kN3OIPG2qQ6242yQ7gl03Q9Aqc_YlESq3UztiNw-j0cJ-rujo5Vcf1eqZrX0UGxVLREgVyAyu32bX5cqTBzLDAVsb3mwK-pSPXO-qAy9LDSmYgNV9gSVZmDsfsFdmmLAyxBPxOdhiLeiA8R98J-5yIKBoH0ZdgPpWyJlYjbMpKdoN-PoiDodkPfv4h2LbF2FWRHRr2e74dBNxxEg6And98ZhgS6)
 
 **A frenquência recomendada para testes é de 100hz para exibição inicial da mensagem e 10hz antes de fazer os inputs de teclado**
 
