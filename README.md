@@ -36,11 +36,30 @@ Fluxograma da lógica de Funcionamento:
 **A frenquência recomendada para testes é de 100hz para exibição inicial da mensagem e 10hz antes de fazer os inputs de teclado**
 
 **Caso a frequência seja maior, ocorrerá erro de multiplas entradas no teclado matricial**
-- O sistema exibe a mensagem "Entrar PIN:" no display LCD.
-- O usuário insere o PIN usando o teclado matricial.
-- O sistema verifica se o PIN inserido está correto.
-- Se o PIN estiver correto, exibe a mensagem "Acesso Concedido" e gira o motor.
-- Caso contrário, exibe a mensagem "Acesso Negado".
+**A frenquência recomendada para testes é de 100hz para exibição inicial da mensagem e 10hz antes de fazer os inputs de teclado**
+
+**Caso a frequência seja maior, ocorrerá erro de multiplas entradas no teclado matricial**
+Quando o PIN é pedido:
+- A função Main é chamada.
+- A função ExibeDisplay é chamada para exibir a mensagem "Digite o PIN:".
+- O loop Novamente é executado para exibir os caracteres da mensagem na tela.
+- A função ScanTeclado é chamada para aguardar a entrada do PIN pelo teclado.
+- Depois que o PIN é digitado, o programa verifica se a entrada está correta ou não usando a função VerificarEntrada.
+- Se o PIN estiver correto, a função Concedido é chamada para exibir "Acesso Concedido".
+- Se o PIN estiver incorreto, a função Negado é chamada para exibir "Acesso Negado".
+
+**Quando o PIN correto é digitado:**
+- A função VerificarEntrada é chamada após cada tecla pressionada para verificar se o PIN está correto.
+- Se todas as teclas estiverem corretas, a função Concedido é chamada para conceder acesso.
+- Após a verificação do PIN correto na função Concedido, o programa SETA o pino de controle do motor (P3.0) para girar no sentido anti-horário.
+- Em seguida, é iniciado um temporizador para aguardar meia volta do motor.
+- Após o término do temporizador, o programa DESATIVA o pino de controle do motor (P3.0) para interromper o movimento.
+
+**Quando o PIN errado é digitado:**
+- A função VerificarEntrada é chamada após cada tecla pressionada para verificar se o PIN está correto.
+- Se alguma tecla estiver incorreta, a função Negado é chamada para negar o acesso..
+
+
 
 
 ## Screenshots
