@@ -39,7 +39,8 @@ Fluxograma da lógica de Funcionamento:
 **A frenquência recomendada para testes é de 100hz para exibição inicial da mensagem e 10hz antes de fazer os inputs de teclado**
 
 **Caso a frequência seja maior, ocorrerá erro de multiplas entradas no teclado matricial**
-Quando o PIN é pedido:
+
+**Quando o PIN é pedido:**
 - A função Main é chamada.
 - A função ExibeDisplay é chamada para exibir a mensagem "Digite o PIN:".
 - O loop Novamente é executado para exibir os caracteres da mensagem na tela.
