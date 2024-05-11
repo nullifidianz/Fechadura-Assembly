@@ -1,7 +1,7 @@
-Org 0000h
+Org 0000h ; origem do programa
 
 
-; definição de variaveis
+; definição de variaveis relativas a pinagem do EDsim51
 RS	Equ	P1.3
 E	Equ	P1.2
 
@@ -21,7 +21,7 @@ Novamente:	Clr A
 		Inc DPTR		
 		Jmp Novamente
 	
-Proximo: Mov R4,#00h	
+Proximo: 	Mov R4,#00h	
 		Mov R5,#00h	
 		Mov DPTR,#LUT4	
 Iterar: Call ScanTeclado	
@@ -51,11 +51,11 @@ Temporizar:	DJNZ R7, Temporizar
 
 		CLR P3.0 
 
-		Jmp FimAqui
+		Jmp Fim
 Incorreto: Call PosicaoCursor  	
 		SetB RS		
 		Call Negado
-FimAqui: Jmp $
+Fim: Jmp $
 				
 ConfigFunc:	Clr  P1.7		
 		Clr  P1.6		
@@ -276,13 +276,10 @@ Concedido:
 Voltar:	
 	Clr A
 	Movc A,@A+DPTR
-	Jz Casa
+	Jz VoltarCasa
 	Call EnviarCar
 	Inc DPTR
 	Jmp	Voltar		
-Casa:	
-	Ret	
-
 
 Negado:		
 	Mov DPTR,#LUT3		
@@ -296,11 +293,9 @@ MaisUm:
 VoltarCasa:	
 	Ret					
 
+; ---- definição da tabela para saida no LCD ----
 LUT1:       DB 'E', 'n', 't', 'r', 'a', 'r', 32, 'P', 'I', 'N',':',0
 LUT2:		DB 'A', 'c', 'e', 's', 's', 'o', 32, 'C', 'o', 'n', 'c', 'e', 'd','i','d','o', 0
 LUT3:		DB 'A', 'c', 'e', 's', 's', 'o', 32, 'N', 'e', 'g', 'a', 'd', 'o', 0
 LUT4:		DB '1', '1', '1', '1',0 ; senha salva
-
-Parar:		
-	Jmp $
 End
