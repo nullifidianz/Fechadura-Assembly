@@ -1,5 +1,5 @@
 
-## Authors
+## Autores
 
 - [João Paulo Paggi Zuanon Dias](https://github.com/nullifidianz)
 - [Thales Clemente Pasquotto](https://github.com/thaleeews)
